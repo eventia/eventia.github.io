@@ -53,9 +53,7 @@ address:
 
 # Credits content
 credits: 
-  - line: '1교육을 위해 스크래치, 엔트리 등의 교육용 EPL 과 함께 아두이노용 C, python, HTML/CSS, 자바스크립트 등의 텍스트 언어를 사용합니다.
-   사용하는 모든 도구는 오픈소스이며 대표적으로 KiCAD, github, jekyll, bootstrap, arduino가 있습니다.
-   또한 교육효과를 위해 전문 수학 프로그램인 도미노와 영국 BBC에서 개발한 micro:bit 를 사용합니다.'
+  - line: '교육을 위해 스크래치, 엔트리 등의 교육용 EPL 과 함께 아두이노용 C, python, HTML/CSS, 자바스크립트 등의 텍스트 언어를 사용합니다. 사용하는 모든 도구는 오픈소스이며 대표적으로 KiCAD, github, jekyll, bootstrap, arduino가 있습니다. 또한 교육효과를 위해 전문 수학 프로그램인 도미노와 영국 BBC에서 개발한 micro:bit 를 사용합니다.'
 
 # Build settings
 markdown: kramdown
