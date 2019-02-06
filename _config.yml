@@ -1,11 +1,11 @@
 # Site settings
-title: 파인유
+title: 미래를 여는 교육
 email: eventia@gmail.com
 url: https://eventia.github.io
-description: "전남 완도군 노화도에 위치한 코딩과 수학 전문학원 미교입니다. 창의수학, 코딩교육, 내신, 대입상담, 자기주도학습등으로 학생들의 꿈과 미래를 함께 고민하고 길을 찾아주는 교육철학으로 학생과 학부모들의 고민을 나누고 희망과 방향을 함께 결정해나가겠습니다."
+description: "전남 완도군 노화도에 위치한 코딩과 수학 전문학원 미교. 창의수학, 코딩교육, 내신, 대입상담, 자기주도학습으로 초등학교, 중학교, 고등학교 학생 대상 교육"
 # description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
 keywords: "코딩교육, 미교, 수학교육, 노화도"
-skills: "수학교육 - 코딩교육 - 자기주도 - 진로지도"
+skills: "수학교육 - 코딩교육 - 자기주도 - 진로상담"
 meta_author: 임성국
 
 # Google webmaster tools
@@ -41,7 +41,7 @@ footer:
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
   - title: facebook
-    url:
+    url: https://www.facebook.com/미래를-여는-교육-557984244698959
   - title: steam
     url: https://band.us/band/74230925
   - title: github
@@ -49,11 +49,13 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: 미교학원
-  - line: 노화도에 위치한 학생들의 창의성과 미래적응력을 돕는 곳입니다.
+  - line: 노화도에 위치한 미교학원은 코딩과 수학으로 학생들의 창의성과 미래적응력을 돕는 곳입니다.
 
 # Credits content
-credits: '오픈소스인 github, gcp, aws, jekyll, bootstrap, scratch, arduino, kicad 와 도미노, micro:bit 등을 사용합니다.'
+credits: 
+  - line: '교육을 위해 스크래치, 엔트리 등의 교육용 EPL 과 함께 아두이노용 C, python, HTML/CSS, 자바스크립트 등의 텍스트 언어를 사용합니다. '
+  - line: '사용하는 모든 도구는 오픈소스이며 대표적으로 KiCAD, github, jekyll, bootstrap, arduino가 있습니다.'
+  - line: '또한 교육효과를 위해 전문 수학 프로그램인 도미노와 영국 BBC에서 개발한 micro:bit 를 사용합니다.'
 
 # Build settings
 markdown: kramdown
