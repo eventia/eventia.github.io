@@ -40,24 +40,20 @@ footer:
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url: 
   - title: facebook
     url:
-  - title: stack-overflow
-    url: http://stackoverflow.com/questions/tagged/jekyll
-  - title: bitbucket
-    url: http://bitbucket.org/jekyll
+  - title: band
+    url: https://band.us/band/74230925
   - title: github
     url: http://github.com/eventia
 
 # Postal address (add as many lines as necessary)
 address:
   - line: 미교학원
-  - line: 완도군, 전남, 코리아
+  - line: 노화도에 위치한 학생들의 창의성과 미래적응력을 돕는 곳입니다.
 
 # Credits content
-credits: '홈페이지는 오픈소스를 사용하여 만들어졌습니다. 사용된 Bootstrap 테마는 <a href="http://startbootstrap.com">Start Bootstrap</a> 입니다.'
+credits: '코딩과 수학의 융합을 통해 학생들의 실력향상과 꿈을 지원합니다. 이를 위해 github, gcp, aws, jekyll, bootstrap 과 arduino, 도미노, micro:bit 등을 사용합니다.'
 
 # Build settings
 markdown: kramdown
