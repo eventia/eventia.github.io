@@ -49,10 +49,10 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: 노화도에 위치한 미교학원은 코딩과 수학으로 학생들의 창의성과 미래적응력을 돕는 곳입니다.
+  - line: 전남 완도군 노화도에 위치한 *미교*학원은 코딩과 수학으로 학생들을 돕습니다.
 
 # Credits content
-credits: '미래를 여는 교육은 수학과 코딩을 축으로 학생의 자기주도학습과 통합교육을 돕습니다.'
+credits: '수학과 코딩을 축으로 학생의 창의성에 기반한 자기주도학습과 미래적응력을 통합교육을 통해 돕습니다.'
 
 # Build settings
 markdown: kramdown
