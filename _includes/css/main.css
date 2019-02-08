@@ -459,8 +459,12 @@ footer .footer-below {
 
 
 
+section.success {
+    color: #fff;
+    background: #{{ site.color.primary }};
+}
 
 section.menupage {
-    color: #000;
-    background: #555;
+    color: #aaa;
+    background: #{{ site.color.secondary-dark }};
 }
