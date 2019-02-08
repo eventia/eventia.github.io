@@ -1,0 +1,12 @@
+---
+layout: default
+modal-id: 7
+date: 2014-07-19
+img: submarine2.png
+alt: image-alt
+project-date: April 2014
+client: Start Bootstrap
+category: Web Development
+description: 8번째 포트폴리오입니다. <a href="https://sellfy.com/p/8Q9P/jV3VZ/">링크</a>를 클릭하시면 사이트로 이동합니다. 사이트 이동과 포트폴리오 개방 래를 여는 교육이 함께 합니다.
+
+---
