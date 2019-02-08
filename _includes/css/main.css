@@ -246,10 +246,6 @@ section.success {
     z-index: 2;
 }
 
-#menupage1 * {
-    z-index: 2;
-}
-
 @media(min-width:767px) {
     #portfolio .portfolio-item {
         margin: 0 0 30px;
@@ -458,4 +454,13 @@ footer .footer-below {
 .modal.fade.in {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+}
+
+
+
+
+
+section.menupage {
+    color: #111;
+    background: #{{ site.color.secondary }};
 }
