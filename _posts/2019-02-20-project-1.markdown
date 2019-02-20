@@ -2,7 +2,7 @@
 layout: default
 modal-id: 1
 date: 2019-02-20
-img: edu4futa.png
+img: edu4futa.jpg
 alt: image-alt
 project-date: April 2014
 client: Start Bootstrap
