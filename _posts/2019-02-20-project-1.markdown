@@ -2,8 +2,8 @@
 layout: default
 modal-id: 1
 date: 2019-02-09
-img: cabin.png
+img: edu4fut_01.png
 alt: image-alt
-description: <p style="text-align:left">코딩</P> <p style="text-align:left">스크래치, 엔트리와 같은 EPL 블록코딩부터 시작해서 Python, Java, C 와 같은 텍스트 코딩까지 기본 문법을 학습합니다.  <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. </p>
+description: <p style="text-align:left">코딩</P> <p style="text-align:left">노화도에 학원미교가 시작됩니다. 2019년 3월에 개강하는 학원 설명회에 초대합니다. <br>수학 : 2019.02.21.목.PM7. 노화청소년문화의집 <br>코딩 : 2019.02.26.화.PM7. 노화청소년문화의집 <br>자세한 내용은 밴드의 공지사항을 참고해 주세요. <br><a href="https://sellfy.com/p/8Q9P/jV3VZ/">[학원 미교 설명회 LINK]</a> <br></p>
 
 ---
