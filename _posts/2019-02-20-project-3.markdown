@@ -2,7 +2,7 @@
 layout: default
 modal-id: 3
 date: 2019-02-20
-img: cabin.png
+img: domino.jpg
 alt: image-alt
 project-date: April 2014
 client: Start Bootstrap
