@@ -1,0 +1,9 @@
+---
+layout: default
+modal-id: 1
+date: 2019-02-09
+img: cabin.png
+alt: image-alt
+description: <p style="text-align:left">코딩</P> <p style="text-align:left">스크래치, 엔트리와 같은 EPL 블록코딩부터 시작해서 Python, Java, C 와 같은 텍스트 코딩까지 기본 문법을 학습합니다.  <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. </p>
+
+---
