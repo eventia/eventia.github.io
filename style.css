@@ -4,6 +4,78 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
+/* 왼쪽 메뉴 스타일 */
+nav {
+    width: 20%;
+    float: left;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+/* 오른쪽 내용 영역 스타일 */
+article {
+    width: 80%;
+    float: right;
+    padding: 20px;
+}
+
+/* 스마트폰 화면 (예시: 너비 768px 이하) */
+@media (max-width: 768px) {
+    nav, article {
+        width: 100%;
+        float: none;
+    }
+} 
+
+
+.container {
+    border: 1px solid #ddd;
+    padding: 40px;
+    border-radius: 8px;
+}
+.title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.phone-group {
+    display: flex;
+    gap: 10px;
+}
+.verify-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+}
+        
 .product {
     border: 1px solid #ddd;
     padding: 20px;
