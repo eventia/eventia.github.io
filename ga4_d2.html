@@ -1,42 +1,119 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RB41TSQTM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1RB41TSQTM');
+    </script>
+    
     <meta charset="UTF-8">
     <title>만년 다이어리 쇼핑몰 - 회원가입</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        // GA4 측정 ID 설정 파일 로드
-        fetch('ga4-config.txt')
-            .then(response => response.text())
-            .then(measurementId => {
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
-                document.head.appendChild(script);
 
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', measurementId);
-            });
-
-        // GA4 이벤트 함수들
-        function trackInput(step) {
-            gtag('event', 'try_sign_up', { step: step });
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
+        .container {
+            border: 1px solid #ddd;
+            padding: 40px;
+            border-radius: 8px;
+        }
+        .title {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .phone-group {
+            display: flex;
+            gap: 10px;
+        }
+        .verify-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">회원가입</h1>
+        <form class="signup-form" onsubmit="return validateForm()">
+            <div class="input-group">
+                <label for="userid">아이디</label>
+                <input type="text" id="userid" name="userid" required 
+                       onchange="gtag('event', 'try_sign_up', { step: 'id'})">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required
+                       onchange="gtag('event', 'try_sign_up', { step: 'password'})">
+            </div>
+            
+            <div class="input-group">
+                <label for="password-confirm">비밀번호 확인</label>
+                <input type="password" id="password-confirm" name="password-confirm" required
+                       onchange="gtag('event', 'try_sign_up', { step: 'password_check'})">
+            </div>
+            
+            <div class="input-group">
+                <label for="phone">휴대폰 번호</label>
+                <div class="phone-group">
+                    <input type="tel" id="phone" name="phone" required
+                           onchange="gtag('event', 'try_sign_up', { step: 'phone'})">
+                    <button type="button" onclick="verifyPhone()" class="verify-btn">인증하기</button>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="verification">인증번호</label>
+                <input type="text" id="verification" name="verification" required
+                       onchange="gtag('event', 'try_sign_up', { step: 'phone_auth'})">
+            </div>
+            
+            <button type="submit" class="submit-btn">가입하기</button>
+        </form>
+    </div>
 
+    <script>
         function verifyPhone() {
             gtag('event', 'try_sign_up', { step: 'phone_check' });
             alert('인증번호가 발송되었습니다.');
-        }
-
-        function submitForm() {
-            gtag('event', 'try_sign_up', { step: 'phone_auth' });
-            if (validateForm()) {
-                alert('회원가입이 완료되었습니다.');
-                return true;
-            }
-            return false;
         }
 
         function validateForm() {
@@ -47,48 +124,9 @@
                 alert('비밀번호가 일치하지 않습니다.');
                 return false;
             }
+            alert('회원가입이 완료되었습니다.');
             return true;
         }
     </script>
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">회원가입</h1>
-        <form class="signup-form" onsubmit="return submitForm()">
-            <div class="input-group">
-                <label for="userid">아이디</label>
-                <input type="text" id="userid" name="userid" required 
-                       onchange="trackInput('id')">
-            </div>
-            
-            <div class="input-group">
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required
-                       onchange="trackInput('password')">
-            </div>
-            
-            <div class="input-group">
-                <label for="password-confirm">비밀번호 확인</label>
-                <input type="password" id="password-confirm" name="password-confirm" required
-                       onchange="trackInput('password_check')">
-            </div>
-            
-            <div class="input-group">
-                <label for="phone">휴대폰 번호</label>
-                <div class="phone-group">
-                    <input type="tel" id="phone" name="phone" required
-                           onchange="trackInput('phone')">
-                    <button type="button" onclick="verifyPhone()" class="verify-btn">인증하기</button>
-                </div>
-            </div>
-            
-            <div class="input-group">
-                <label for="verification">인증번호</label>
-                <input type="text" id="verification" name="verification" required>
-            </div>
-            
-            <button type="submit" class="submit-btn">가입하기</button>
-        </form>
-    </div>
 </body>
 </html>
