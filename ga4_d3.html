@@ -1,36 +1,93 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RB41TSQTM"></script> -->
+    
+    <script src="ga4-config.js"></script>
+    <!-- 
+      <script>
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-1RB41TSQTM";
+        document.head.appendChild(script);
+      </script>
+    -->
+    
+    <script src="ga4-setup.js"></script>
+    <!-- 
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1RB41TSQTM');
+      </script>
+    -->
+
     <meta charset="UTF-8">
     <title>다이어리 쇼핑몰</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .product-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 20px;
+            color: #e44d26;
+            margin-bottom: 20px;
+        }
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="product">
+        <h1 class="product-title">만년 프리미엄 다이어리</h1>
+        <img src="./img/diary.jpg" width="400" height="300" alt="다이어리 이미지" class="product-image">
+        <p class="product-price">가격: 5,002원</p>
+        <p>수량: 1개</p>
+        <button class="add-to-cart" onclick="addToCart()">장바구니 담기</button>
+    </div>
+
     <script>
-        // GA4 측정 ID 설정 파일 로드
-        fetch('ga4-config.txt')
-            .then(response => response.text())
-            .then(measurementId => {
-                // Google tag (gtag.js) 로더
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
-                document.head.appendChild(script);
-
-                // GA4 기본 설정
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', measurementId);
-            });
-
-        // 장바구니 이벤트 처리
         function addToCart() {
+            // GA4 이벤트 트래킹 코드
             gtag('event', 'add_to_cart', {
                 currency: 'KRW',
-                value: 5000,
+                value: 5002,
                 items: [{
                     item_id: 'diary_2024',
                     item_name: '만년 프리미엄 다이어리',
-                    price: 5000,
+                    price: 5002,
                     quantity: 1
                 }]
             });
@@ -38,14 +95,5 @@
             alert('장바구니에 상품이 담겼습니다!');
         }
     </script>
-</head>
-<body>
-    <div class="product">
-        <h1 class="product-title">만년 프리미엄 다이어리</h1>
-        <img src="./img/diary.jpg" width="400" height="300" alt="다이어리 이미지" class="product-image">
-        <p class="product-price">가격: 5,000원</p>
-        <p>수량: 1개</p>
-        <button class="add-to-cart" onclick="addToCart()">장바구니 담기</button>
-    </div>
 </body>
 </html>
