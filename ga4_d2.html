@@ -2,50 +2,93 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>다이어리 쇼핑몰</title>
+    <title>만년 다이어리 쇼핑몰 - 회원가입</title>
     <link rel="stylesheet" href="style.css">
     <script>
         // GA4 측정 ID 설정 파일 로드
         fetch('ga4-config.txt')
             .then(response => response.text())
             .then(measurementId => {
-                // Google tag (gtag.js) 로더
                 const script = document.createElement('script');
                 script.async = true;
                 script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
                 document.head.appendChild(script);
 
-                // GA4 기본 설정
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', measurementId);
             });
 
-        // 장바구니 이벤트 처리
-        function addToCart() {
-            gtag('event', 'add_to_cart', {
-                currency: 'KRW',
-                value: 5000,
-                items: [{
-                    item_id: 'diary_2024',
-                    item_name: '만년 프리미엄 다이어리',
-                    price: 5000,
-                    quantity: 1
-                }]
-            });
+        // GA4 이벤트 함수들
+        function trackInput(step) {
+            gtag('event', 'try_sign_up', { step: step });
+        }
+
+        function verifyPhone() {
+            gtag('event', 'try_sign_up', { step: 'phone_check' });
+            alert('인증번호가 발송되었습니다.');
+        }
+
+        function submitForm() {
+            gtag('event', 'try_sign_up', { step: 'phone_auth' });
+            if (validateForm()) {
+                alert('회원가입이 완료되었습니다.');
+                return true;
+            }
+            return false;
+        }
+
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
             
-            alert('장바구니에 상품이 담겼습니다!');
+            if (password !== passwordConfirm) {
+                alert('비밀번호가 일치하지 않습니다.');
+                return false;
+            }
+            return true;
         }
     </script>
 </head>
 <body>
-    <div class="product">
-        <h1 class="product-title">만년 프리미엄 다이어리</h1>
-        <img src="./img/diary.jpg" width="400" height="300" alt="다이어리 이미지" class="product-image">
-        <p class="product-price">가격: 6,000원</p>
-        <p>수량: 1개</p>
-        <button class="add-to-cart" onclick="addToCart()">장바구니 담기</button>
+    <div class="container">
+        <h1 class="title">회원가입</h1>
+        <form class="signup-form" onsubmit="return submitForm()">
+            <div class="input-group">
+                <label for="userid">아이디</label>
+                <input type="text" id="userid" name="userid" required 
+                       onchange="trackInput('id')">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required
+                       onchange="trackInput('password')">
+            </div>
+            
+            <div class="input-group">
+                <label for="password-confirm">비밀번호 확인</label>
+                <input type="password" id="password-confirm" name="password-confirm" required
+                       onchange="trackInput('password_check')">
+            </div>
+            
+            <div class="input-group">
+                <label for="phone">휴대폰 번호</label>
+                <div class="phone-group">
+                    <input type="tel" id="phone" name="phone" required
+                           onchange="trackInput('phone')">
+                    <button type="button" onclick="verifyPhone()" class="verify-btn">인증하기</button>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="verification">인증번호</label>
+                <input type="text" id="verification" name="verification" required>
+            </div>
+            
+            <button type="submit" class="submit-btn">가입하기</button>
+        </form>
     </div>
 </body>
 </html>
