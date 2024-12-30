@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RB41TSQTM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1RB41TSQTM');
+    </script>
+    
     <meta charset="UTF-8">
     <title>만년 다이어리 쇼핑몰 - 회원가입</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // GA4 측정 ID 설정 파일 로드
-        fetch('ga4-config.txt')
-            .then(response => response.text())
-            .then(measurementId => {
-                // Google tag (gtag.js) 로더
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
-                document.head.appendChild(script);
-
-                // GA4 기본 설정
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', measurementId);
-            });
-
         // 가입하기 버튼 클릭 이벤트 처리
         function signUp() {
             gtag('event', 'sign_up_click', {
