@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PRRSJDF8');</script>
+<!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <title>만년 다이어리 쇼핑몰 - 회원가입</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        // 가입하기 버튼 클릭 이벤트 처리
+        function signUp() {
+            gtag('event', 'sign_up_click', {
+                'event_category': 'engagement',
+                'event_label': '회원가입 시작',
+                'value': 1
+            });
+            
+            location.href='ga4_d2.html';
+        }
+    </script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRRSJDF8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  
+  <nav>
+    <ul>
+      <li><a href="./gtm.html">HOME</a></li>
+      <li><a href="./ga4_d11.html">가입안내</a></li>
+      <li><a href="./ga4_d12.html">회원가입</a></li>
+      <li><a href="./ga4_d13.html">물품구입</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+    <div class="container">
+        <h1 class="title">만년 다이어리 쇼핑몰 회원가입</h1>
+        <div class="description">
+            <p>만년 다이어리 쇼핑몰에 오신 것을 환영합니다.</p>
+            <p>회원가입을 통해 다양한 혜택을 누려보세요:</p>
+            <p>- 신규 회원 10% 할인 쿠폰</p>
+            <p>- 회원 전용 특별 할인</p>
+            <p>- 구매 금액의 2% 적립</p>
+            <p>- 신상품 입고 알림 서비스</p>
+        </div>
+        <button class="signup-btn" onclick="signUp()">가입하기</button>
+    </div>
+  </article>
+</body>
+</html>
