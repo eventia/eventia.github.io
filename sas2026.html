@@ -1,49 +1,178 @@
-<html>
-  <head></head>
-  <body>
- 
-    <h1>
-      신안산대학교 2026년 1학기 
-    </h1>
-    
-	<p>AI 활용 계측공학 강의자료</p>
-	<ul>
-	  <li><p><a href = ".\lect\ai-labview1.pdf">강의자료1</a></p></li>
-      <li><p><a href = ".\lect\ai-labview2.pdf">강의자료2</a></p></li>
-      <li><p><a href = "https://forms.gle/PzbdWHzUxopKKyNh9">중간고사</a></p></li>
-		
-	</ul>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신안산대학교 강의자료실</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
 
-	<p>전력전자 및 시뮬레이션 강의자료</p>
-	<ul>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_1주차강의자료.pdf">강의자료1</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_2주차강의자료.pdf">강의자료2</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_3주차강의자료.pdf">강의자료3</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_4주차강의자료.pdf">강의자료4</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_5주차강의자료.pdf">강의자료5</a></p></li>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_6주차강의자료.pdf">강의자료6</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_9주차강의자료.pdf">강의자료7</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_10주차강의자료.pdf">강의자료8</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_11주차강의자료.pdf">강의자료9</a></p></li>
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_12주차강의자료.pdf">강의자료10</a></p></li>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-	  <li><p><a href = ".\lect\전력전자 및 시뮬레이션_13주차강의자료.pdf">강의자료11</a></p></li>
-	</ul>
-	<ol>
-	  <li><p><a href = "https://eei.chonbuk.ac.kr/bbs/eei/1585/190300/artclView.do">참고자료</a></p></li>
-	  <li><p><a href = "https://forms.gle/3abNDF15mMRX8sco7"> 과제제출 </a></p></li>
-      <li><p><a href = "https://forms.gle/s5DY6VsD6ba1fuXr6">중간고사</a></p></li>
-		
-	</ol>
+        /* 헤더 디자인 */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
 
-	  
-    <!-- 주석 내용 
-	<p>구글 문서에 공유된 파일들을 다운받아서 준비해 오세요 </p>
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+        }
 
-	  <p><a href = "https://docs.google.com/forms/d/e/1FAIpQLSf89SWws9jwA6TenggjgDKH2WXdZiIo0CKaAYKY-UFefMFpQg/viewform?usp=header">과제 2025-2학기</a>
-	  <p>
-    -->
+        header p {
+            margin-top: 10px;
+            opacity: 0.8;
+        }
 
-  </body>
+        /* 카드 섹션 디자인 */
+        .course-section {
+            display: grid;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        /* 리스트 스타일 */
+        .link-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .link-list li a {
+            display: block;
+            background: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #555;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .link-list li a:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 중요 링크(시험, 과제) 강조 */
+        .link-list li a.important {
+            background: #fff0f0;
+            color: #e74c3c;
+            border-color: #ffc9c9;
+            font-weight: bold;
+        }
+
+        .link-list li a.important:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .extra-links {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.4rem; }
+            .link-list { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>신안산대학교 2026년 1학기</h1>
+        <p>전공 강의자료 및 학습 지원 페이지</p>
+    </header>
+
+    <main class="course-section">
+        <article class="card">
+            <h2>AI 활용 계측공학</h2>
+            <ul class="link-list">
+                <li><a href="./lect/ai-labview1.pdf">강의자료 1</a></li>
+                <li><a href="./lect/ai-labview2.pdf">강의자료 2</a></li>
+                <li><a href="https://forms.gle/PzbdWHzUxopKKyNh9" class="important">중간고사</a></li>
+            </ul>
+        </article>
+
+        <article class="card">
+            <h2>전력전자 및 시뮬레이션</h2>
+            <ul class="link-list">
+                <li><a href="./lect/전력전자 및 시뮬레이션_1주차강의자료.pdf">1주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_2주차강의자료.pdf">2주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_3주차강의자료.pdf">3주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_4주차강의자료.pdf">4주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_5주차강의자료.pdf">5주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_6주차강의자료.pdf">6주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_9주차강의자료.pdf">9주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_10주차강의자료.pdf">10주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_11주차강의자료.pdf">11주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_12주차강의자료.pdf">12주차 자료</a></li>
+                <li><a href="./lect/전력전자 및 시뮬레이션_13주차강의자료.pdf">13주차 자료</a></li>
+            </ul>
+            
+            <div class="extra-links">
+                <ul class="link-list" style="width: 100%;">
+                    <li><a href="https://eei.chonbuk.ac.kr/bbs/eei/1585/190300/artclView.do">참고자료</a></li>
+                    <li><a href="https://forms.gle/3abNDF15mMRX8sco7" class="important">과제제출</a></li>
+                    <li><a href="https://forms.gle/s5DY6VsD6ba1fuXr6" class="important">중간고사</a></li>
+                </ul>
+            </div>
+        </article>
+    </main>
+</div>
+
+</body>
 </html>
