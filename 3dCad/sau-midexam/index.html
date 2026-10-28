@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>신안산대학교 중간고사 실기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>신안산대학교 2026년 중간고사 실기</h1>
+
+    <!-- 입력 폼 -->
+    <section id="input_section">
+      <form id="exam_form" novalidate>
+
+        <label for="student_name">이름(한글로 적으세요)</label>
+        <input type="text" id="student_name" autocomplete="off">
+        <p class="error" id="name_error"></p>
+
+        <label for="student_class">반</label>
+        <input type="text" id="student_class" autocomplete="off">
+        <p class="error" id="class_error"></p>
+
+        <label for="student_id">학번(숫자만 입력하세요)</label>
+        <input type="text" id="student_id" inputmode="numeric" autocomplete="off">
+        <p class="error" id="id_error"></p>
+
+        <button type="submit">문제 보기</button>
+      </form>
+    </section>
+
+    <!-- 문제 화면 -->
+    <section id="exam_section" hidden>
+      <div class="student_info">
+        <span>이름: <strong id="info_name"></strong></span>
+        <span>반: <strong id="info_class"></strong></span>
+        <span>학번: <strong id="info_id"></strong></span>
+      </div>
+
+      <table class="dimension_table">
+        <thead>
+          <tr><th>치수</th><th>A</th><th>B</th><th>C</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>값 (mm)</th><td id="value_A"></td><td id="value_B"></td><td id="value_C"></td></tr>
+        </tbody>
+      </table>
+
+      <p class="instruction" id="instruction"></p>
+
+      <!-- 문제 1, 2 도면 (exam.js의 problems 설정으로 생성) -->
+      <div id="problem_list"></div>
+
+      <!-- 답안 제출 안내 (캡처 이미지에서는 제외) -->
+      <div class="submit_notice" data-html2canvas-ignore>
+        <h2>답안 제출 안내</h2>
+        <p>아래 두 가지 캡처 이미지를 답지(구글 설문지)에 제출하세요.</p>
+        <ol>
+          <li>이 페이지의 <strong>[화면 캡처]</strong> 버튼으로 저장한 <strong>문제 캡처</strong></li>
+          <li>Onshape로 작성한 <strong>최종 Drawing 캡처</strong></li>
+        </ol>
+        <a class="submit_link" href="https://forms.gle/mxpmkRoTyCpYQESXA" target="_blank" rel="noopener">답지 제출하기 (구글 설문지) →</a>
+      </div>
+
+      <!-- data-html2canvas-ignore: 캡처 이미지에서 버튼 제외 -->
+      <div class="buttons no_print" data-html2canvas-ignore>
+        <button type="button" id="reset_button" class="secondary">다시 입력</button>
+        <button type="button" id="capture_button">화면 캡처</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="exam.js"></script>
+</body>
+</html>
