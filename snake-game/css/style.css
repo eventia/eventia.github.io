@@ -1,0 +1,226 @@
+/* ===== 색상 토큰 (캔버스 색도 JS가 여기서 읽는다) ===== */
+:root {
+  --bg: #0e1621;
+  --surface: #162231;
+  --text: #e6edf3;
+  --text-dim: #8b9bb0;
+  --accent: #4ade80;
+  --board: #13202e;
+  --board-alt: #172636;
+  --snake: #4ade80;
+  --snake-head: #bbf7d0;
+  --food: #f87171;
+  --overlay: rgba(14, 22, 33, 0.82);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  /* 더블탭 확대 방지 */
+  touch-action: manipulation;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+  padding: 16px;
+}
+
+/* ===== 점수판 ===== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.score-board {
+  display: flex;
+  gap: 16px;
+}
+
+.score-item {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-label {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.score-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* ===== 게임 보드 ===== */
+.board-wrap {
+  position: relative;
+  /* 화면 높이에도 들어가도록 너비를 제한 */
+  width: min(100%, calc(100vh - 140px));
+  width: min(100%, calc(100dvh - 140px));
+  min-width: 240px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--board);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 12px 32px rgba(0, 0, 0, 0.4);
+  /* 보드 위 스와이프가 스크롤·새로고침으로 이어지지 않게 */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.board {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  text-align: center;
+  background: var(--overlay);
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.overlay-text {
+  margin: 0;
+  color: var(--text-dim);
+  white-space: pre-line;
+}
+
+.overlay-hint {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.btn {
+  min-width: 140px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn:focus-visible,
+.dpad-btn:focus-visible {
+  outline: 3px solid var(--snake-head);
+  outline-offset: 3px;
+}
+
+/* ===== 십자 버튼 (터치 기기에서만) ===== */
+.dpad {
+  display: none;
+  grid-template-columns: repeat(3, 64px);
+  grid-template-rows: repeat(2, 56px);
+  grid-template-areas:
+    ". up ."
+    "left down right";
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.dpad-btn {
+  border: 0;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.25rem;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dpad-btn:active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.dpad-up { grid-area: up; }
+.dpad-left { grid-area: left; }
+.dpad-right { grid-area: right; }
+.dpad-down { grid-area: down; }
+
+.hint-touch {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .dpad {
+    display: grid;
+  }
+
+  /* 십자 버튼 높이만큼 보드를 줄인다 */
+  .board-wrap {
+    width: min(100%, calc(100vh - 290px));
+    width: min(100%, calc(100dvh - 290px));
+  }
+
+  .hint-pc {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
+}
+
+.app-footer {
+  padding: 8px 16px 16px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}

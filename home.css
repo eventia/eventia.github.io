@@ -174,6 +174,24 @@ img { max-width: 100%; }
 .course-body-inner { padding: 0 22px 20px; color: var(--muted); }
 .course-body-inner p { margin: 0 0 8px; }
 
+/* 작품 */
+.work-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.work-card {
+  position: relative; display: flex; flex-direction: column; gap: 8px;
+  padding: 20px 22px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  color: inherit; text-decoration: none; transition: box-shadow .2s, transform .2s;
+}
+.work-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.work-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.work-tag {
+  align-self: flex-start; font-size: .78rem; padding: 3px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent); font-weight: 500;
+}
+.work-name { font-weight: 700; font-size: 1.05rem; }
+.work-desc { color: var(--muted); font-size: .92rem; }
+.work-arrow { position: absolute; top: 18px; right: 22px; color: var(--accent); transition: transform .2s; }
+.work-card:hover .work-arrow { transform: translateX(3px); }
+
 /* 필터 */
 .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
 .filter-btn {
