@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 프린팅 재시험</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">신안산대학교 · 2026</p>
+    <h1>3D 프린팅 제작 및 후처리<br>중간평가 실기 재시험</h1>
+
+    <!-- 입력 폼 -->
+    <section id="input_section">
+      <ul class="rules">
+        <li>문제는 모두 <strong>5개</strong>이며 한 문제씩 나옵니다.</li>
+        <li>문제마다 답안 PDF를 <strong>한 번만</strong> 제출할 수 있습니다.</li>
+        <li><strong>다음 문제로 넘어가면 이전 문제로 돌아올 수 없습니다.</strong></li>
+        <li>종료 시각 후 2분이 지나면 제출할 수 없습니다.</li>
+        <li>시험 중에는 처음 접속한 브라우저만 사용하세요.</li>
+      </ul>
+      <form id="exam_form" novalidate>
+        <label for="student_name">이름(한글로 적으세요)</label>
+        <input type="text" id="student_name" autocomplete="off">
+        <p class="error" id="name_error"></p>
+
+        <label for="student_class">반</label>
+        <input type="text" id="student_class" autocomplete="off">
+        <p class="error" id="class_error"></p>
+
+        <label for="student_id">학번(숫자만 입력하세요)</label>
+        <input type="text" id="student_id" inputmode="numeric" autocomplete="off">
+        <p class="error" id="id_error"></p>
+
+        <button type="submit" id="enter_button">시험 입장</button>
+      </form>
+    </section>
+
+    <!-- 안내 메시지 (대기·종료·오류) -->
+    <section id="message_section" hidden>
+      <p class="message_title" id="message_title"></p>
+      <p class="message_big" id="message_big"></p>
+      <p class="message_text" id="message_text"></p>
+      <button type="button" id="message_button" class="secondary" hidden>처음으로</button>
+    </section>
+
+    <!-- 문제 화면 -->
+    <section id="exam_section" hidden>
+      <div class="exam_bar">
+        <div class="student_info">
+          <span><b id="info_name"></b></span>
+          <span id="info_class"></span>
+          <span id="info_id"></span>
+        </div>
+        <div class="timer">
+          <span id="end_text"></span>
+          <strong id="remain_text"></strong>
+        </div>
+      </div>
+      <div class="banner" id="grace_banner" hidden></div>
+
+      <div class="problem_head">
+        <h2>문제 <span id="problem_number"></span> <small>/ <span id="problem_total"></span></small></h2>
+        <span class="level" id="problem_level"></span>
+      </div>
+      <ol class="steps" id="steps"></ol>
+      <p class="instruction">도면과 같이 3D 모델링하고, 결과를 PDF로 저장해 아래에서 제출하세요. (단위: mm)</p>
+      <div class="drawing" id="drawing"></div>
+
+      <div class="submit_box">
+        <h3>답안 제출</h3>
+        <div id="submit_form">
+          <input type="file" id="file_input" accept="application/pdf,.pdf">
+          <p class="file_info" id="file_info">PDF 파일(10MB 이하)을 선택하세요.</p>
+          <button type="button" id="submit_button" disabled>답안 제출</button>
+        </div>
+        <p class="submit_result" id="submit_result"></p>
+      </div>
+
+      <div class="buttons">
+        <button type="button" id="next_button" class="next">다음 문제 →</button>
+      </div>
+    </section>
+
+    <!-- 시험 완료 -->
+    <section id="done_section" hidden>
+      <p class="message_title">시험을 마쳤습니다</p>
+      <p class="message_text">문제별 제출 결과입니다. 수고했습니다.</p>
+      <ul class="summary" id="summary"></ul>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="retest.js"></script>
+</body>
+</html>
