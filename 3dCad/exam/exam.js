@@ -47,6 +47,28 @@ function level_class(level) {
   return level === '쉬움' ? 'easy' : level === '중간' ? 'medium' : 'hard';
 }
 
+// 남은 시간 짧은 표기 (카드 배지용): "2시간 5분", "42분", "30초"
+function format_until(ms) {
+  const total_min = Math.ceil(ms / 60000);
+  if (ms < 60000) return `${Math.max(0, Math.ceil(ms / 1000))}초`;
+  if (total_min < 60) return `${total_min}분`;
+  const h = Math.floor(total_min / 60);
+  const m = total_min % 60;
+  return m === 0 ? `${h}시간` : `${h}시간 ${m}분`;
+}
+
+// 시험 카드 상태 — { key, label, selectable }
+//   upcoming(입장 전) → waiting(입장 가능, 시작 전) → open(진행 중) → grace(제출 마감 임박) → closed(종료)
+function session_state(session, now_ms) {
+  if (now_ms < session.open_from) {
+    return { key: 'upcoming', label: `${format_clock(session.open_from)}부터 입장`, selectable: false };
+  }
+  if (now_ms < session.start) return { key: 'waiting', label: `시작 ${format_until(session.start - now_ms)} 전`, selectable: true };
+  if (now_ms < session.end) return { key: 'open', label: `진행 중 · ${format_until(session.end - now_ms)} 남음`, selectable: true };
+  if (now_ms < session.deadline) return { key: 'grace', label: '제출 마감 임박', selectable: true };
+  return { key: 'closed', label: '종료', selectable: false };
+}
+
 // localStorage 접근 (막혀 있어도 동작하도록)
 function storage_get(key) {
   try { return localStorage.getItem(key); } catch (e) { return null; }
@@ -56,16 +78,20 @@ function storage_set(key, value) {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { validate_input, format_remain, level_class };
+  module.exports = { validate_input, format_remain, level_class, format_until, session_state };
 }
 
 if (typeof document !== 'undefined') {
   const el = (id) => document.getElementById(id);
-  const sections = ['input_section', 'message_section', 'exam_section', 'done_section'];
+  const sections = ['select_section', 'input_section', 'message_section', 'exam_section', 'done_section'];
+  const show_test = new URLSearchParams(location.search).get('test') === '1'; // 감독관 리허설용
 
   // 화면 상태
   const state = {
-    student: null, // { student_id, name, class_name, token }
+    sessions: [], // 오늘 회차 목록 (시험 선택 화면)
+    cards: [], // [{ session, button, badge }]
+    selected: null, // 고른 회차
+    student: null, // { student_id, name, class_name, token, session_id }
     offset_ms: 0, // 서버 시각 - 내 컴퓨터 시각
     session: null, // { session_id, exam_id, exam_name, notice, start, end, deadline, total }
     submitted: [],
@@ -136,26 +162,98 @@ if (typeof document !== 'undefined') {
     if (selected && items.indexOf(selected) >= 0) select.value = selected;
   }
 
-  async function load_classes() {
-    const status = el('form_status');
-    status.className = 'form_status';
-    status.textContent = '시험 정보를 불러오는 중...';
-    const res = await api('classes', {}, false);
+  // ---------- 시험 선택 ----------
+  // auto_resume: 처음 열 때만 — 저장해 둔 회차가 아직 입장 가능하면 바로 입장 폼으로 (시험 중 새로고침 대비)
+  async function load_sessions(auto_resume) {
+    const status = el('select_status');
+    if (state.sessions.length === 0) {
+      status.className = 'form_status';
+      status.textContent = '시험 목록을 불러오는 중...';
+    }
+    const res = await api('sessions', show_test ? { test: true } : {}, false);
     if (!res.ok) {
       status.textContent = res.message;
       status.className = 'form_status bad';
       return;
     }
-    if (res.classes.length === 0) {
-      status.textContent = '지금 응시할 수 있는 시험이 없습니다. 시험 시작 3시간 전부터 입장할 수 있습니다.';
+    state.sessions = res.sessions;
+    render_sessions();
+    if (auto_resume && saved.session_id) {
+      const found = state.sessions.filter((s) => s.session_id === saved.session_id)[0];
+      if (found && session_state(found, server_now()).selectable) choose_session(found);
+    }
+  }
+
+  function render_sessions() {
+    const list = el('session_list');
+    const status = el('select_status');
+    list.innerHTML = '';
+    state.cards = [];
+    el('select_hint').hidden = state.sessions.length === 0;
+    if (state.sessions.length === 0) {
+      status.textContent = '오늘 예정된 시험이 없습니다.';
       status.className = 'form_status bad';
-      fill_select(el('class_select'), [], '응시할 반 없음');
       return;
     }
     status.textContent = '';
-    fill_select(el('class_select'), res.classes, '반을 고르세요', saved.class_name);
-    if (el('class_select').value) load_names(saved.name);
+    state.sessions.forEach(function (s) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      const top = document.createElement('span');
+      top.className = 'card_top';
+      const name = document.createElement('span');
+      name.className = 'card_name';
+      name.textContent = s.exam_name + (s.is_test ? ' (테스트)' : '');
+      const badge = document.createElement('span');
+      top.append(name, badge);
+      const time = document.createElement('span');
+      time.className = 'card_time';
+      time.textContent = `${format_day(s.start)} ${format_clock(s.start)} ~ ${format_clock(s.end)}`;
+      const meta = document.createElement('span');
+      meta.className = 'card_meta';
+      meta.textContent = `대상: ${s.classes.join(', ')} · ${s.total}문제`;
+      button.append(top, time, meta);
+      button.addEventListener('click', () => choose_session(s));
+      list.appendChild(button);
+      state.cards.push({ session: s, button: button, badge: badge });
+    });
+    update_cards();
   }
+
+  // 카드 상태 배지·선택 가능 여부 갱신 (1초마다)
+  function update_cards() {
+    const now = server_now();
+    state.cards.forEach(function (card) {
+      const st = session_state(card.session, now);
+      card.badge.textContent = st.label;
+      card.badge.className = 'badge ' + st.key;
+      card.button.className = 'session_card ' + st.key;
+      card.button.disabled = !st.selectable;
+    });
+  }
+
+  function show_select() {
+    state.selected = null;
+    set_exam_name(null);
+    show_section('select_section');
+    load_sessions(false);
+  }
+
+  function choose_session(session) {
+    state.selected = session;
+    saved.session_id = session.session_id;
+    storage_set(storage_key, JSON.stringify(saved));
+    el('selected_name').textContent = session.exam_name + (session.is_test ? ' (테스트)' : '');
+    el('selected_time').textContent = `${format_day(session.start)} ${format_clock(session.start)} ~ ${format_clock(session.end)} · ${session.total}문제`;
+    ['class_error', 'id_error', 'name_error'].forEach((id) => (el(id).textContent = ''));
+    // 반이 하나뿐이면 자동 선택
+    const preset = session.classes.length === 1 ? session.classes[0] : saved.class_name;
+    fill_select(el('class_select'), session.classes, '반을 고르세요', preset);
+    load_names(saved.name);
+    show_section('input_section');
+  }
+
+  el('change_exam').addEventListener('click', show_select);
 
   async function load_names(selected_name) {
     const class_name = el('class_select').value;
@@ -166,8 +264,9 @@ if (typeof document !== 'undefined') {
       return;
     }
     fill_select(select, [], '불러오는 중...');
-    const res = await api('names', { class_name: class_name }, false);
-    if (el('class_select').value !== class_name) return; // 그 사이 반을 바꾼 경우
+    const session_id = state.selected.session_id;
+    const res = await api('names', { class_name: class_name, session_id: session_id }, false);
+    if (el('class_select').value !== class_name || !state.selected || state.selected.session_id !== session_id) return; // 그 사이 바꾼 경우
     if (!res.ok) {
       fill_select(select, [], '불러오지 못함');
       el('name_error').textContent = res.message;
@@ -185,6 +284,7 @@ if (typeof document !== 'undefined') {
     show_message('서버 확인 중...', '잠시만 기다리세요.');
     const res = await api('status');
     if (!res.ok) {
+      if (res.code === 'bad_session') state.selected = null; // "처음으로"가 시험 선택으로 가도록
       show_message('입장할 수 없습니다', res.message, '', true);
       return;
     }
@@ -304,6 +404,7 @@ if (typeof document !== 'undefined') {
   // ---------- 1초마다 시간 표시 ----------
   function tick() {
     const now = server_now();
+    if (!el('select_section').hidden) update_cards();
     if (state.waiting_for_start && state.session) {
       const remain = state.session.start - now;
       el('message_big').textContent = format_remain(remain);
@@ -337,10 +438,14 @@ if (typeof document !== 'undefined') {
     }
   }
   setInterval(tick, 500);
+  // 시험 선택 화면을 보고 있으면 1분마다 목록 새로고침 (회차 추가·변경 반영)
+  setInterval(() => {
+    if (!el('select_section').hidden) load_sessions(false);
+  }, 60000);
 
   // ---------- 입장 폼 ----------
   if (saved.student_id) el('student_id').value = saved.student_id;
-  load_classes();
+  load_sessions(true);
 
   el('exam_form').addEventListener('submit', (event) => {
     event.preventDefault();
@@ -360,14 +465,19 @@ if (typeof document !== 'undefined') {
     saved.student_id = student_id;
     saved.name = name;
     storage_set(storage_key, JSON.stringify(saved));
-    state.student = { student_id: student_id, name: name, class_name: class_name, token: '' };
+    state.student = { student_id: student_id, name: name, class_name: class_name, token: '', session_id: state.selected.session_id };
     enter();
   });
 
+  // "처음으로": 고른 시험이 있으면 입장 폼, 없으면 시험 선택
   el('message_button').addEventListener('click', () => {
     state.waiting_for_start = false;
-    show_section('input_section');
-    load_classes();
+    if (state.selected) {
+      show_section('input_section');
+      load_names(el('name_select').value || saved.name);
+    } else {
+      show_select();
+    }
   });
 
   // ---------- 파일 선택·제출 ----------
