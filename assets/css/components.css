@@ -96,6 +96,41 @@
   font-weight: 600;
 }
 
+/* 모바일: 메뉴를 한 줄 가로 스크롤로 (스크롤바 숨김, 오른쪽 끝 흐림) */
+@media (max-width: 640px) {
+  .site_header_inner {
+    flex-wrap: nowrap;
+    gap: var(--space_3);
+  }
+
+  .site_brand {
+    flex-shrink: 0;
+  }
+
+  .site_header nav {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .site_nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-right: var(--space_5);
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+
+  .site_nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site_nav a {
+    white-space: nowrap;
+  }
+}
+
 /* ── 섹션 ───────────────────────────── */
 .section + .section {
   margin-top: var(--space_7);
@@ -425,4 +460,164 @@ a.card:hover .card_arrow {
   max-width: calc(var(--page_width) + var(--page_gutter) * 2);
   margin: 0 auto;
   padding: var(--space_5) var(--page_gutter);
+}
+
+/* ── 카테고리 아이콘 칩 ──────────────────── */
+.icon_chip {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius_md);
+  background: var(--chip_bg, var(--color_surface_alt));
+  color: var(--chip_fg, var(--color_muted));
+}
+
+.icon_chip svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon_chip.is_large {
+  width: 44px;
+  height: 44px;
+}
+
+.icon_chip.is_large svg {
+  width: 24px;
+  height: 24px;
+}
+
+.is_cat_exam    { --chip_bg: var(--cat_exam_bg);    --chip_fg: var(--cat_exam_fg); }
+.is_cat_lecture { --chip_bg: var(--cat_lecture_bg); --chip_fg: var(--cat_lecture_fg); }
+.is_cat_study   { --chip_bg: var(--cat_study_bg);   --chip_fg: var(--cat_study_fg); }
+.is_cat_games   { --chip_bg: var(--cat_games_bg);   --chip_fg: var(--cat_games_fg); }
+.is_cat_about   { --chip_bg: var(--cat_about_bg);   --chip_fg: var(--cat_about_fg); }
+
+/* 카드 안에서 칩 + 본문 + 화살표 */
+.card_body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 카테고리 페이지 제목 줄 */
+.page_title_row {
+  display: flex;
+  align-items: center;
+  gap: var(--space_3);
+}
+
+/* ── 홈 카테고리 그리드: 2×2 + 아래 가로 띠 ─── */
+.home_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space_3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .home_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.home_grid > .is_wide {
+  grid-column: 1 / -1;
+}
+
+/* 낮은 높이의 차분한 띠 카드 (프로필 등 준비 중인 항목) */
+.card.is_band {
+  padding: var(--space_3) var(--space_5);
+  background: transparent;
+  box-shadow: none;
+}
+
+.card.is_band .card_title {
+  font-size: var(--text_md);
+}
+
+/* ── 준비 중 카드: 눌리지 않음이 바로 보이게 ─── */
+.card.is_pending {
+  border-style: dashed;
+  background: transparent;
+  box-shadow: none;
+  color: var(--color_muted);
+  cursor: default;
+}
+
+.card.is_pending .card_title {
+  color: var(--color_muted);
+}
+
+/* ── 지난 자료 등 간결한 목록 ─────────────── */
+.link_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color_line);
+  border-radius: var(--radius_md);
+  background: var(--color_surface);
+  overflow: hidden;
+}
+
+.link_list li + li {
+  border-top: 1px solid var(--color_line);
+}
+
+.link_list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space_4);
+  min-height: 56px;
+  padding: var(--space_2) var(--space_5);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.link_list a:hover {
+  background: var(--color_row_hover);
+  color: inherit;
+}
+
+.link_list_title {
+  font-weight: 600;
+}
+
+.link_list_desc {
+  margin-left: var(--space_2);
+  color: var(--color_muted);
+  font-size: var(--text_sm);
+}
+
+.link_list .card_arrow {
+  font-size: var(--text_lg);
+}
+
+.link_list a:hover .card_arrow {
+  color: var(--color_accent);
+}
+
+/* ── 앰버 상태 표시 (시간에 민감한 것만) ──── */
+.badge.is_amber,
+.banner_tag.is_live {
+  background: var(--color_amber);
+  color: var(--color_on_amber);
+}
+
+/* 좁은 화면에서는 목록 설명을 제목 아래 줄로 */
+@media (max-width: 640px) {
+  .link_list_title,
+  .link_list_desc {
+    display: block;
+  }
+
+  .link_list_desc {
+    margin-left: 0;
+  }
 }

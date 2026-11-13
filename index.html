@@ -28,16 +28,17 @@
 
   <main class="page_main">
     <div class="page_intro">
-      <p class="eyebrow">eventia.github.io</p>
-      <h1>강의 · 시험 · 스터디</h1>
-      <p class="lead">수업 자료와 실기시험, 스터디 자료를 한곳에 모았습니다.</p>
+      <p class="eyebrow">강의 · 시험 · 스터디 자료실</p>
+      <h1>수업 자료와 실기시험을 한곳에</h1>
+      <p class="lead">강의자료, 실기시험 입장, 스터디 실습과 게임을 카테고리별로 모았습니다.</p>
     </div>
 
-    <!-- 지금 진행 중: data-until(YYYY-MM-DD, 한국 시간)이 지나면 자동으로 숨겨짐 -->
+    <!-- 지금 진행 중: data-until(YYYY-MM-DD, 한국 시간)이 지나면 자동으로 숨겨짐
+         data-live-dates 에 시험 날짜를 쉼표로 적으면 그날만 라벨이 앰버 '오늘 진행 중'으로 바뀜 (예: 2026-11-20,2026-11-27) -->
     <section class="banner_list" aria-label="지금 진행 중" data-highlight-list>
-      <a class="banner" href="3dCad/exam/index.html" data-until="2026-12-31">
+      <a class="banner" href="3dCad/exam/index.html" data-until="2026-12-31" data-live-dates="">
         <span>
-          <span class="banner_tag">실기시험</span>
+          <span class="banner_tag" data-live-tag>실기시험</span>
           <span class="banner_title">3D CAD 실기시험 입장하기</span>
           <span class="banner_desc">반 · 학번 · 이름을 고르고 오늘의 시험에 입장합니다</span>
         </span>
@@ -48,12 +49,12 @@
     <section class="section" aria-labelledby="category_title">
       <h2 class="section_title" id="category_title">카테고리</h2>
       <!-- site_nav.js 가 assets/data/site.json 으로 다시 그림. 아래는 읽기 실패 시 기본 목록 -->
-      <ul class="card_grid" data-category-cards>
-        <li><a class="card" href="exam/"><span><span class="card_title">문제출제와 시험</span><span class="card_desc">실기시험 입장, 개인별 과제 생성기</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
-        <li><a class="card" href="lecture/"><span><span class="card_title">강의내용 공지</span><span class="card_desc">학기·학교별 강의자료와 과제 제출</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
-        <li><a class="card" href="study/"><span><span class="card_title">스터디 자료 공유</span><span class="card_desc">GA4·GTM 실습 자료</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
-        <li><a class="card" href="games/"><span><span class="card_title">온라인 게임</span><span class="card_desc">브라우저에서 바로 하는 게임</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
-        <li><a class="card" href="about/"><span><span class="card_title">개인 소개 프로필</span><span class="card_desc">소개와 강의 이력 (준비 중)</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+      <ul class="home_grid" data-category-cards>
+        <li><a class="card" href="exam/"><span class="icon_chip is_cat_exam" data-icon="exam"></span><span class="card_body"><span class="card_title">문제출제와 시험</span><span class="card_desc">실기시험 입장, 개인별 과제 생성기</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="lecture/"><span class="icon_chip is_cat_lecture" data-icon="lecture"></span><span class="card_body"><span class="card_title">강의내용 공지</span><span class="card_desc">학기·학교별 강의자료와 과제 제출</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="study/"><span class="icon_chip is_cat_study" data-icon="study"></span><span class="card_body"><span class="card_title">스터디 자료 공유</span><span class="card_desc">GA4·GTM 실습 자료</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="games/"><span class="icon_chip is_cat_games" data-icon="games"></span><span class="card_body"><span class="card_title">온라인 게임</span><span class="card_desc">브라우저에서 바로 하는 게임</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li class="is_wide"><a class="card is_band" href="about/"><span class="icon_chip is_cat_about" data-icon="about"></span><span class="card_body"><span class="card_title">개인 소개 프로필</span><span class="card_desc">소개와 강의 이력 (준비 중)</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
       </ul>
     </section>
   </main>

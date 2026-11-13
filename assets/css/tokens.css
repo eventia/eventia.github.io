@@ -7,8 +7,8 @@
   --color_surface: #ffffff;
   --color_surface_alt: #eef1f6;
   --color_text: #141a26;
-  --color_muted: #586174;
-  --color_line: #dfe3ea;
+  --color_muted: #4b5563;
+  --color_line: #e3e6eb;
   --color_accent: #1e3a8a;
   --color_accent_hover: #172e6e;
   --color_accent_soft: #e7ecf7;
@@ -17,6 +17,18 @@
   --color_danger_soft: #fdecea;
   --color_ok: #1f7a3a;
   --color_focus: #3b63d6;
+  --color_row_hover: #f3f5f9;
+
+  /* 상태 강조(앰버): '오늘 진행 중', '마감 임박'처럼 시간에 민감한 표시에만 쓴다 */
+  --color_amber: #f59e0b;
+  --color_on_amber: #3d2600;
+
+  /* 카테고리 색: 아이콘 칩에만 쓴다 (카드 배경은 흰색 유지) */
+  --cat_exam_bg: #dbe4ff;    --cat_exam_fg: #1e3a8a;
+  --cat_lecture_bg: #d5f2ec; --cat_lecture_fg: #0f6e56;
+  --cat_study_bg: #e9e4fb;   --cat_study_fg: #4c3a9e;
+  --cat_games_bg: #fdefd3;   --cat_games_fg: #8a5300;
+  --cat_about_bg: #ecedef;   --cat_about_fg: #374151;
 
   /* 강조 배너 (진행 중) */
   --color_banner_bg: #1e3a8a;
@@ -78,6 +90,16 @@
     --color_danger_soft: #3a1c1a;
     --color_ok: #6fd08f;
     --color_focus: #93b1ff;
+    --color_row_hover: #1b2230;
+
+    --color_amber: #fbbf24;
+    --color_on_amber: #2a1a00;
+
+    --cat_exam_bg: #1c2742;    --cat_exam_fg: #a9c0ff;
+    --cat_lecture_bg: #12352d; --cat_lecture_fg: #74d6b8;
+    --cat_study_bg: #2a2448;   --cat_study_fg: #bcadf7;
+    --cat_games_bg: #3a2a0c;   --cat_games_fg: #f5c46e;
+    --cat_about_bg: #252a33;   --cat_about_fg: #c3c9d4;
 
     --color_banner_bg: #1c2742;
     --color_banner_text: #eef2ff;
