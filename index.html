@@ -3,35 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eventia.github.io</title>
-  <link rel="stylesheet" href="site.css">
+  <title>eventia</title>
+  <meta name="description" content="강의, 시험, 스터디 자료, 게임을 모아 둔 eventia의 페이지">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/site_nav.js" defer></script>
 </head>
-<body>
-  <main class="page">
-    <p class="eyebrow">eventia.github.io</p>
-    <h1>강의 자료</h1>
-    <p class="lead">수업과 시험 관련 페이지입니다.</p>
+<body data-category="home">
+  <header class="site_header" data-site-nav>
+    <div class="site_header_inner">
+      <a class="site_brand" href="index.html">eventia</a>
+      <nav aria-label="카테고리">
+        <ul class="site_nav">
+          <li><a href="exam/">문제출제와 시험</a></li>
+          <li><a href="lecture/">강의내용 공지</a></li>
+          <li><a href="study/">스터디 자료 공유</a></li>
+          <li><a href="games/">온라인 게임</a></li>
+          <li><a href="about/">개인 소개 프로필</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- 실기시험 포스트잇 -->
-    <a class="postit" href="3dCad/exam/index.html">
-      <span class="postit_tag">실기시험</span>
-      <span class="postit_title">3D CAD 실기시험<br>입장하기</span>
-      <span class="postit_hint">클릭해서 입장 →</span>
-    </a>
+  <main class="page_main">
+    <div class="page_intro">
+      <p class="eyebrow">eventia.github.io</p>
+      <h1>강의 · 시험 · 스터디</h1>
+      <p class="lead">수업 자료와 실기시험, 스터디 자료를 한곳에 모았습니다.</p>
+    </div>
 
-    <ul class="menu">
+    <!-- 지금 진행 중: data-until(YYYY-MM-DD, 한국 시간)이 지나면 자동으로 숨겨짐 -->
+    <section class="banner_list" aria-label="지금 진행 중" data-highlight-list>
+      <a class="banner" href="3dCad/exam/index.html" data-until="2026-12-31">
+        <span>
+          <span class="banner_tag">실기시험</span>
+          <span class="banner_title">3D CAD 실기시험 입장하기</span>
+          <span class="banner_desc">반 · 학번 · 이름을 고르고 오늘의 시험에 입장합니다</span>
+        </span>
+        <span class="banner_action">입장 →</span>
+      </a>
+    </section>
 
-      <li>
-        <a href="3dCad/index.html">
-          <span>
-            <span class="menu_title">3D프린팅및후처리</span>
-            <span class="menu_desc">실기 시험 및 수업 자료</span>
-          </span>
-          <span class="arrow">→</span>
-        </a>
-      </li>
-
-    </ul>
+    <section class="section" aria-labelledby="category_title">
+      <h2 class="section_title" id="category_title">카테고리</h2>
+      <!-- site_nav.js 가 assets/data/site.json 으로 다시 그림. 아래는 읽기 실패 시 기본 목록 -->
+      <ul class="card_grid" data-category-cards>
+        <li><a class="card" href="exam/"><span><span class="card_title">문제출제와 시험</span><span class="card_desc">실기시험 입장, 개인별 과제 생성기</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="lecture/"><span><span class="card_title">강의내용 공지</span><span class="card_desc">학기·학교별 강의자료와 과제 제출</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="study/"><span><span class="card_title">스터디 자료 공유</span><span class="card_desc">GA4·GTM 실습, 멘토링 프로젝트</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="games/"><span><span class="card_title">온라인 게임</span><span class="card_desc">브라우저에서 바로 하는 게임</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+        <li><a class="card" href="about/"><span><span class="card_title">개인 소개 프로필</span><span class="card_desc">소개와 강의 이력 (준비 중)</span></span><span class="card_arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
   </main>
+
+  <footer class="site_footer">
+    <div class="site_footer_inner">© eventia.github.io</div>
+  </footer>
 </body>
 </html>

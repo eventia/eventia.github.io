@@ -9,20 +9,27 @@
 
 ```
 /
-├─ index.html          메인 페이지
+├─ index.html          메인 페이지 (진행 중 배너 + 카테고리 카드)
 ├─ sas2026.html        신안산대학교 강의자료실 (2026)
-├─ site.css            메인·3dCad 공통 스타일
+├─ site.css            예전 페이지용 호환 스타일 (assets/css 를 불러옴)
+├─ assets/             사이트 공통 파일
+│  ├─ css/             tokens.css · base.css · components.css
+│  ├─ js/site_nav.js   공통 메뉴, 기간 지난 배너 숨김
+│  └─ data/site.json   카테고리 목록 (메뉴·홈 카드)
+├─ exam/ lecture/ study/ games/ about/   카테고리 허브 (기존 페이지로 연결)
 ├─ 3dCad/              3D CAD / 3D 프린팅 실기 평가
+│  ├─ exam/            통합 실기시험 응시 화면
 │  ├─ sau-midexam/     중간평가 실기
 │  ├─ sau-retest/      중간평가 실기 재시험
 │  └─ images/          도면 이미지
 ├─ snake-game/         스네이크 게임 (작품)
 ├─ html/               그 밖의 HTML 페이지 (아래 표 참고)
 ├─ img/                html/ 의 GA4 실습 페이지가 쓰는 이미지
-└─ lect/               강의자료 PDF·실습 파일 (페이지에서 직접 링크)
+├─ lect/               강의자료 PDF·실습 파일 (페이지에서 직접 링크)
+└─ docs/               기획 문서 (로컬 전용, .gitignore)
 ```
 
-`_private/`(재시험 문제 원본·Apps Script), `ExamSample/`, `ErrorImages/`는 `.gitignore`에 등록되어 있어 저장소에 올라가지 않습니다.
+`_private/`(재시험 문제 원본·Apps Script), `docs/`(모든 깊이의 기획 문서), `ExamSample/`, `ErrorImages/`는 `.gitignore`에 등록되어 있어 저장소에 올라가지 않습니다.
 
 ## html/ 페이지 목록
 

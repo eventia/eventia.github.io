@@ -1,0 +1,89 @@
+/* 디자인 토큰: 색·글꼴·간격·모서리·그림자 (2026-11 개편, 차분한 남색 톤) */
+:root {
+  color-scheme: light dark;
+
+  /* 색 — 밝은 모드 */
+  --color_bg: #f5f6f9;
+  --color_surface: #ffffff;
+  --color_surface_alt: #eef1f6;
+  --color_text: #141a26;
+  --color_muted: #586174;
+  --color_line: #dfe3ea;
+  --color_accent: #1e3a8a;
+  --color_accent_hover: #172e6e;
+  --color_accent_soft: #e7ecf7;
+  --color_on_accent: #ffffff;
+  --color_danger: #b42318;
+  --color_danger_soft: #fdecea;
+  --color_ok: #1f7a3a;
+  --color_focus: #3b63d6;
+
+  /* 강조 배너 (진행 중) */
+  --color_banner_bg: #1e3a8a;
+  --color_banner_text: #ffffff;
+  --color_banner_muted: #c9d4f2;
+
+  /* 글꼴 */
+  --font_sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font_mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  /* 글자 크기 단계 */
+  --text_xs: 0.75rem;
+  --text_sm: 0.875rem;
+  --text_md: 1rem;
+  --text_lg: 1.125rem;
+  --text_xl: 1.375rem;
+  --text_2xl: 1.75rem;
+  --text_3xl: 2.25rem;
+
+  /* 간격 */
+  --space_1: 4px;
+  --space_2: 8px;
+  --space_3: 12px;
+  --space_4: 16px;
+  --space_5: 24px;
+  --space_6: 32px;
+  --space_7: 48px;
+  --space_8: 64px;
+
+  /* 모서리 */
+  --radius_sm: 6px;
+  --radius_md: 10px;
+  --radius_lg: 16px;
+  --radius_pill: 999px;
+
+  /* 그림자 */
+  --shadow_sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow_md: 0 6px 20px rgba(16, 24, 40, 0.08);
+
+  /* 레이아웃 */
+  --page_width: 960px;
+  --page_gutter: 16px;
+}
+
+/* 어두운 모드 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color_bg: #0d1118;
+    --color_surface: #151b26;
+    --color_surface_alt: #1b2230;
+    --color_text: #e8ebf2;
+    --color_muted: #9aa4b8;
+    --color_line: #283143;
+    --color_accent: #93b1ff;
+    --color_accent_hover: #b4c9ff;
+    --color_accent_soft: #1c2742;
+    --color_on_accent: #0d1118;
+    --color_danger: #ff8a7f;
+    --color_danger_soft: #3a1c1a;
+    --color_ok: #6fd08f;
+    --color_focus: #93b1ff;
+
+    --color_banner_bg: #1c2742;
+    --color_banner_text: #eef2ff;
+    --color_banner_muted: #a9b8e0;
+
+    --shadow_sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow_md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  }
+}

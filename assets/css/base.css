@@ -1,0 +1,84 @@
+/* 기본 스타일: 리셋, 본문, 제목, 링크, 포커스 */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color_bg);
+  color: var(--color_text);
+  font-family: var(--font_sans);
+  font-size: var(--text_md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--text_2xl); font-weight: 700; }
+h2 { font-size: var(--text_xl); font-weight: 700; }
+h3 { font-size: var(--text_lg); font-weight: 600; }
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color_accent);
+}
+
+a:hover {
+  color: var(--color_accent_hover);
+}
+
+/* 키보드 포커스는 항상 보이게 */
+:focus-visible {
+  outline: 3px solid var(--color_focus);
+  outline-offset: 2px;
+  border-radius: var(--radius_sm);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 화면에는 숨기고 스크린리더에만 읽힘 */
+.sr_only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (min-width: 720px) {
+  h1 { font-size: var(--text_3xl); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

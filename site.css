@@ -1,39 +1,17 @@
-/* 메뉴 페이지 공통 스타일 (루트, 3dCad) */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+/*
+ * 호환용 스타일 (2026-11 디자인 개편)
+ * 새 페이지는 assets/css/tokens.css → base.css → components.css 를 직접 불러온다.
+ * 이 파일은 예전 경로(site.css)를 쓰는 페이지(html/indexasu.html)를 위해 남겨 둔다.
+ */
+@import url("assets/css/tokens.css");
+@import url("assets/css/base.css");
+@import url("assets/css/components.css");
 
-:root {
-  --bg: #f5f6f8;
-  --card: #ffffff;
-  --text: #16181d;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --accent: #2563eb;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1115;
-    --card: #181b21;
-    --text: #f1f3f5;
-    --muted: #9aa1ac;
-    --line: #2a2f38;
-    --accent: #60a5fa;
-  }
-}
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+/* 예전 메뉴 페이지 틀: 가운데 정렬 한 단 */
+body:has(> .page) {
   align-items: center;
-  padding: 48px 16px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Pretendard", "Malgun Gothic", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  justify-content: center;
+  padding: var(--space_7) var(--page_gutter);
 }
 
 .page {
@@ -41,32 +19,18 @@ body {
   max-width: 520px;
 }
 
-/* 상단 제목 */
-.eyebrow {
-  margin: 0 0 8px;
-  color: var(--accent);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.page h1 {
+  margin-bottom: var(--space_2);
 }
 
-h1 {
-  margin: 0 0 8px;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.page .lead {
+  margin: 0 0 var(--space_6);
 }
 
-.lead {
-  margin: 0 0 32px;
-  color: var(--muted);
-}
-
-/* 링크 카드 */
+/* 예전 링크 카드 목록 */
 .menu {
   display: grid;
-  gap: 12px;
+  gap: var(--space_3);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -76,20 +40,21 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 20px 22px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--card);
+  gap: var(--space_4);
+  padding: var(--space_5);
+  border: 1px solid var(--color_line);
+  border-radius: var(--radius_md);
+  background: var(--color_surface);
   color: inherit;
   text-decoration: none;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow_sm);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
 .menu a:hover {
-  border-color: var(--accent);
+  border-color: var(--color_accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow_md);
 }
 
 .menu_title {
@@ -99,88 +64,28 @@ h1 {
 
 .menu_desc {
   display: block;
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 0.875rem;
+  margin-top: var(--space_1);
+  color: var(--color_muted);
+  font-size: var(--text_sm);
 }
 
 .arrow {
-  color: var(--muted);
-  font-size: 1.25rem;
-  transition: color 0.2s, transform 0.2s;
+  color: var(--color_muted);
+  font-size: var(--text_xl);
 }
 
 .menu a:hover .arrow {
-  color: var(--accent);
-  transform: translateX(3px);
+  color: var(--color_accent);
 }
 
-/* 포스트잇 카드 (재시험 안내) */
-.postit {
-  position: relative;
-  display: block;
-  width: 260px;
-  margin: 8px auto 36px;
-  padding: 30px 22px 22px;
-  background: linear-gradient(170deg, #fff8a6 0%, #fdeb6e 100%);
-  color: #3b3200;
-  text-decoration: none;
-  transform: rotate(-2.5deg);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 6px 12px 18px -6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* 위쪽 테이프 */
-.postit::before {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  width: 90px;
-  height: 26px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transform: translateX(-50%) rotate(3deg);
-}
-
-.postit:hover {
-  transform: rotate(0deg) translateY(-4px) scale(1.03);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 10px 20px 28px -8px rgba(0, 0, 0, 0.35);
-}
-
-.postit_tag {
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  background: #d32f2f;
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.postit_title {
-  display: block;
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-.postit_hint {
-  display: block;
-  margin-top: 14px;
-  color: #7a6a00;
-  font-size: 0.85rem;
-  text-align: right;
-}
-
-/* 뒤로 가기 링크 */
 .back {
   display: inline-block;
-  margin-bottom: 24px;
-  color: var(--muted);
-  font-size: 0.875rem;
+  margin-bottom: var(--space_5);
+  color: var(--color_muted);
+  font-size: var(--text_sm);
   text-decoration: none;
 }
 
-.back:hover { color: var(--accent); }
+.back:hover {
+  color: var(--color_accent);
+}
