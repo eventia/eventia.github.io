@@ -174,10 +174,9 @@
   transition: transform 0.15s, box-shadow 0.15s;
 }
 
-@media (prefers-color-scheme: dark) {
-  .banner {
-    border-color: var(--color_accent);
-  }
+/* 어두운 모드(선택 시)에서 배너 테두리 */
+:root[data-theme="dark"] .banner {
+  border-color: var(--color_accent);
 }
 
 .banner:hover {

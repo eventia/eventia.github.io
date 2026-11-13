@@ -1,11 +1,11 @@
 /* 디자인 토큰: 색·글꼴·간격·모서리·그림자 (2026-11 개편, 차분한 남색 톤) */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* 색 — 밝은 모드 */
-  --color_bg: #f5f6f9;
+  --color_bg: #f9fafc;
   --color_surface: #ffffff;
-  --color_surface_alt: #eef1f6;
+  --color_surface_alt: #f1f4f8;
   --color_text: #141a26;
   --color_muted: #4b5563;
   --color_line: #e3e6eb;
@@ -73,9 +73,10 @@
   --page_gutter: 16px;
 }
 
-/* 어두운 모드 */
-@media (prefers-color-scheme: dark) {
-  :root {
+/* 어두운 모드: 시스템 설정을 따르지 않고 항상 밝은 화면을 쓴다 (2026-11-14 결정).
+   나중에 전환 버튼을 만들면 <html data-theme="dark"> 일 때만 적용된다. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
     --color_bg: #0d1118;
     --color_surface: #151b26;
     --color_surface_alt: #1b2230;
@@ -107,5 +108,4 @@
 
     --shadow_sm: 0 1px 2px rgba(0, 0, 0, 0.4);
     --shadow_md: 0 6px 20px rgba(0, 0, 0, 0.45);
-  }
 }
