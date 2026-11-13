@@ -13,3 +13,6 @@ ErrorImages/
 
 # 기획·설계 문서(PRD·TRD·TASK) — 사이트 동작에 필요 없어 공개하지 않음 (모든 깊이의 docs/)
 docs/
+
+# Claude Code 로컬 설정·훅 (개인용)
+.claude/
